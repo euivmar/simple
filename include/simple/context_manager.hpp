@@ -23,6 +23,10 @@
 
 namespace simple
 {
+/**
+ * @brief Class for the ZMQ context lifetime management. It's goal is to properly terminate the ZMQ context once it's
+ * done being used.
+ */
 class ContextManager
 {
 public:

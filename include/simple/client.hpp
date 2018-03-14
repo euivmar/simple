@@ -27,7 +27,9 @@
 namespace simple
 {
 /**
- * @brief Creates a Client socket for a specific type of message.
+ * @brief Creates a Client socket for a specific type of message. The Client is capable of sending requests to the
+ * connected server and receive the reply. Each request must be met with a reply (the client will block for a
+ * time=timeOut until a reply is received). The connected server must match the type of message.
  */
 template <typename T>
 class Client : public GenericSocket<T>
@@ -60,6 +62,10 @@ public:
     GenericSocket<T>::connect(other.address_);
   }
 
+  /**
+  * @brief Copy assignment for Client.
+  * The assigned socket is connected to the same address, with the same timeout and linger as the rhs.
+  */
   Client& operator=(const Client& other)
   {
     GenericSocket<T>::renewSocket(ZMQ_REQ);
